@@ -1,5 +1,5 @@
 module.exports = function(app, db){
- app.post('project/create', (req, res) =>{
+ app.post('/api/v1/project/create', (req, res) =>{
      res.send("first project route");
  })
     

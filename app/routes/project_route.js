@@ -1,3 +1,4 @@
+var ObjectID = require('mongodb').ObjectID; 
 module.exports = function(app, db){
  app.post('/api/v1/project/create', (req, res) =>{
      const project = {title: req.body.title,
@@ -13,7 +14,21 @@ module.exports = function(app, db){
              res.send(result.ops[0]);
          }
      });
- })
- //^3.2.7   
- //^2.2.33
+ });
+//get a single project detail
+app.get('/api/v1/project/:id', (req, res) =>{
+     const id = req.params.id;
+     const details = {'_id':new ObjectID(id)};
+     db.collection('projects').findOne(details, (err, item) =>{
+         if(err){
+             send.res({'error': 'An Error Has Occur'})
+         }else{
+             res.send(item);
+         }
+
+     });
+});
+
+//delete project
+
 }

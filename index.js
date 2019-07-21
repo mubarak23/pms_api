@@ -6,7 +6,8 @@ const db = require('./config/db');
 const app = express();
 app.use(bodypaser.urlencoded({ extended: true}));
 const port = 3000;
-MongoClient.connect(db.url, { useNewUrlParser: true },  (err, database)=>{
+MongoClient.connect(db.url,  (err, database)=>{
+    //{ useNewUrlParser: true }
     if(err) return console.log(err);
     require('./app/routes')(app, database);
 app.listen(port, ( )=>{

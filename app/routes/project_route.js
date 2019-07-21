@@ -15,7 +15,7 @@ module.exports = function(app, db){
          }
      });
  });
-//get a single project detail
+//get a single project detail route
 app.get('/api/v1/project/:id', (req, res) =>{
      const id = req.params.id;
      const details = {'_id':new ObjectID(id)};
@@ -29,7 +29,7 @@ app.get('/api/v1/project/:id', (req, res) =>{
      });
 });
 
-//delete project
+//delete project route
 app.delete('/api/v1/project/:id', (req, res) =>{
     const id = req.params.id;
     const details = {'_id': new ObjectID(id)};

@@ -30,5 +30,15 @@ app.get('/api/v1/project/:id', (req, res) =>{
 });
 
 //delete project
-
+app.delete('/api/v1/project/:id', (req, res) =>{
+    const id = req.params.id;
+    const details = {'_id': new ObjectID(id)};
+    db.collection('project').remove(details, (err, item) =>{
+        if(err){
+            send.res({'error': 'An Error Has Occur'});
+        }else{
+            res.send(item);
+        }
+    });
+})
 }

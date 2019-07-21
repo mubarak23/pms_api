@@ -33,12 +33,34 @@ app.get('/api/v1/project/:id', (req, res) =>{
 app.delete('/api/v1/project/:id', (req, res) =>{
     const id = req.params.id;
     const details = {'_id': new ObjectID(id)};
-    db.collection('project').remove(details, (err, item) =>{
+    db.collection('projects').remove(details, (err, item) =>{
         if(err){
             send.res({'error': 'An Error Has Occur'});
         }else{
-            res.send(item);
+            res.send('Project ' + id + ' Deleted');
         }
     });
 })
+
+//update project
+app.put('/api/v1/project/:id', (req, res) =>{
+    const id = req.params.id;
+    const details = {'_id': new ObjectID(id)};
+    const project_update = {
+        title: req.body.title,
+        description: req.body.description,
+        assign_student: req.body.assign_student,
+        assign_supervisor: req.body.assign_supervisor,
+        create_date:(new Date(Date.now()).toISOString())
+    };
+    db.collection('projects').updateOne(details, project_update, (err, item) =>{
+        if(err){
+            res.send({'error': 'An Error Has Occured'})
+        }else{
+            res.send(item);
+        }
+    })
+})
+
+
 }

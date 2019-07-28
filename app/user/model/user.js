@@ -9,6 +9,7 @@ const userModel = new Schema({
   assign_to: {type: String, required: true },
   reg_no: {type: String, required: true},
   fullname: {type:String, required: true}
+  
 })
 
 module.exports = mongoose.Model('User', userModel);

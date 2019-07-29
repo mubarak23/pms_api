@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoes = require('mongoose');
 const bodyParser = require('body-parser');
-const Book = require('./model/projectModel');
-
+const Project = require('./model/projectModel');
+const projectRouter = require('./routes/projectRouter')(Project);
 
 const app = express();
 app.use(bodyParser.json());
@@ -21,7 +21,7 @@ const db = mongoes.connect("mongodb://root:root123@ds251240.mlab.com:51240/nodeh
 
 
  //wiring the book router to our app
- //app.use('/api', bookRouter);
+ app.use('/api', ProjectRouter);
  
  app.get('/', (req, res) =>{
      res.send('Welcome to library resfull api');

@@ -28,29 +28,24 @@ function routes (Project){
         });
     });
 
-
-    bookRouter.route('/project/:bookID')
+bookRouter.route('/project/:projectID')
 .get((req, res) =>{
-    const book_id = req.params.bookID;
+    const project_id = req.params.projectID;
     //return book_id;
-    Book.findById(book_id, (error, book) =>{
+    Book.findById(project_id, (error, project) =>{
         if(error){
-            const response = {
-                "message": 'nable to find book with the targeted id',
-                "success": false,
-                "status": 401
-            };
-           return res.json(response);
+           
+           return res.status(401).json({
+               "message": "unable to find project with the targeted id"
+           });
         }
-        const response = {
-            "message": ' Book with ID Retrieved',
-            "success": true,
-            "data": book,
-            "status": 200
-        };
-       return res.json(response);
+       return res.json({
+           "message": "Project with ID Retrieved",
+           "data": project
+       });
     })
 });
 return bookRouter;
 
 }
+module.exports = routes;

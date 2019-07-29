@@ -21,7 +21,7 @@ const db = mongoes.connect("mongodb://root:root123@ds251240.mlab.com:51240/nodeh
 
 
  //wiring the book router to our app
- app.use('/api', ProjectRouter);
+ app.use('/api', projectRouter);
  
  app.get('/', (req, res) =>{
      res.send('Welcome to library resfull api');

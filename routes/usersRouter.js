@@ -21,4 +21,21 @@ function routes(User){
         user.save();
         return res.status(201).json(user);
     })
+
+    userRouter.route('/user/:userID')
+    .get((req, res) =>{
+        const userID = req.params.userID;
+        User.findById(userID, (error, user) =>{
+            if(error){
+                return res.status(401).json({
+                    "message": "Unable to find User with specify ID"
+                });
+            }
+            return res.status(200).json({
+                "message": "user Details",
+                "data": user
+            });
+        })
+    })       
 }
+

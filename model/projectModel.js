@@ -8,6 +8,8 @@ const projectModel = new Schema({
     assign_supervisor: {type: String},
     status: {type: Boolean, default: 0},
     create_date: {type: Date}
+},{
+    timestamps: true
 });
 
 module.exports = mongooes.model('Project', projectModel);

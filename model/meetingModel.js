@@ -11,6 +11,9 @@ const meetingModel = new Schema({
     created_by: { type: String},
     with_student_by: {Type: String},
     create_at: { type: Date}
+},
+{
+    timestamps: true
 });
 
 module.exports = mongoose.model('Meeting', meetingModel);

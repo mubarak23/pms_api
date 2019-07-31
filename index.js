@@ -3,8 +3,10 @@ const mongoes = require('mongoose');
 const bodyParser = require('body-parser');
 const Project = require('./model/projectModel');
 const Meeting = require('./model/meetingModel');
+const User = require('./model/userModel');
 const projectRouter = require('./routes/projectRouter')(Project);
 const meetingRouter = require('./routes/meetingRouter')(Meeting);
+const userRouter = require('./routes/usersRouter')(User);
 
 
 const app = express();

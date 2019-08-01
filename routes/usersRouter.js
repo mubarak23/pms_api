@@ -36,6 +36,9 @@ function routes(User){
                 "data": user
             });
         })
-    })       
+    }) 
+    
+    return userRouter;
 }
 
+module.exports = routes;

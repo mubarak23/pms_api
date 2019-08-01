@@ -1,4 +1,4 @@
-const express = express();
+const express = require('express');
 const meetingRouter = express.Router();
 
 function routes(Meeting){
@@ -37,4 +37,7 @@ function routes(Meeting){
             });
         })
     })
+    return meetingRouter;
 }
+
+module.exports = routes;

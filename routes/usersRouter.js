@@ -1,5 +1,6 @@
 const express = require('express');
 const userRouter = express.Router();
+ const bcrypt = require('bcryptjs');
 
 function routes(User){
     userRouter.route('/user')
@@ -17,6 +18,8 @@ function routes(User){
         })
     })
     .post((req, res) =>{
+        let hash_password = bcrypt.hash(req.body.password, 8);
+        req.body.password = hash_password;
         const user = new User(req.body);
         user.save();
         return res.status(201).json(user);
@@ -37,6 +40,10 @@ function routes(User){
             });
         })
     }) 
+    userRouter.route('/user/login')
+    .get((req, res) =>{
+
+    })
     
     return userRouter;
 }

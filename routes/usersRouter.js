@@ -42,7 +42,7 @@ function routes(User){
     }) 
     userRouter.route('/user/login')
     .get((req, res) =>{
-
+        
     })
     
     return userRouter;

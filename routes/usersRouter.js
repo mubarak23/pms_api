@@ -41,8 +41,18 @@ function routes(User){
         })
     }) 
     userRouter.route('/user/login')
-    .get((req, res) =>{
-        
+    .post((req, res) =>{
+        const { email, password} = req.body;
+        const user = findByCredential(email, password);
+        if(!user){
+            return res.status(401).json({error: 'Invalid Login Credentials'});
+        }else{
+            const token = user.generateAuthToken();
+            res.status(200).json({
+                user,
+                token
+            });
+        }
     })
     
     return userRouter;

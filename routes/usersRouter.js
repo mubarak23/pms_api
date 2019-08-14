@@ -20,9 +20,18 @@ function routes(User){
     .post((req, res) =>{
         let hash_password = bcrypt.hash(req.body.password, 8);
         req.body.password = hash_password;
+        const main = (req.body);
+        //return main;
         const user = new User(req.body);
-        user.save();
-        return res.status(201).json(user);
+        if(user.save()){
+            return res.status(201).json(user); 
+        }else{
+            return res.status(201).json({
+                message: "Wrong detail"
+            });  
+        }
+        //user.save();
+        //return res.status(201).json(user);
     })
 
     userRouter.route('/user/:userID')

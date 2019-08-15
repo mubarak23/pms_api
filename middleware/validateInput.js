@@ -31,3 +31,18 @@ signup((req, res, next) =>{
     }
  next();
 })
+
+signin((req, res, next) =>{
+    req.body.username = req.body.username && req.body.username.toLowerCase();
+    const { username, passsword} = req.body;
+    if(!username || typeof username !== 'string'){
+        return res.status(400).send({
+            message: 'Username is required'
+        })
+    }else if(!password || typeof password !== 'string'){
+        return res.status(400).send({
+            message: 'Password is required'
+        });
+    }
+    next();
+})

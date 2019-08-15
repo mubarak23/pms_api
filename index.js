@@ -7,7 +7,7 @@ const User = require('./model/userModel');
 const projectRouter = require('./routes/projectRouter')(Project);
 const meetingRouter = require('./routes/meetingRouter')(Meeting);
 const userRouter = require('./routes/usersRouter')(User);
-
+const routes = require('./routes/routes');
 
 const app = express();
 app.use(bodyParser.json());
@@ -49,6 +49,7 @@ app.use('/api', userRouter);
      res.send('Welcome to library resfull api');
  });
  
+ app.use('/api/v1', routes);
 
 
  app.listen(port, () =>{

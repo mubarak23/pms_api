@@ -2,6 +2,7 @@ const express = require('express');
 const  validateInput = require('../middleware/validateInput');
 const UserController = require( '../controllers/UserController');
 const MeetingController = require('../controllers/MeetingController');
+const ProjectController = require('../controllers/ProjectController');
 
 const router = express.Router();
 
@@ -19,5 +20,10 @@ router.get('/pms_api',(req, res) =>{
     '/meeting/createMeeting',
     validateInput.createMeeting,
     MeetingController.createMeeting
+)
+.post(
+    '/project/createProject',
+    validateInput.createProject,
+    ProjectController.createProject
 )
 module.exports = router;

@@ -75,7 +75,27 @@ createMeeting(req, next, res){
         })
     }
     next();
+},
+createProject(req, next, res){
+    const { title, description, assign_student, assign_supervisor, status} = req.body;
+    if(!title){
+        return res.status(401).send({
+            message: 'Title Date is required'
+        })
+    } else if(!description){
+        return req.json(401).send({
+            message: 'Description Time is required'
+        })
+    } else if(!assign_student){
+        return res.status(401).send({
+            message: 'Assign Student is required'
+        })
+    } else if(!assign_supervisor){
+        return res.status(401).send({
+            message: 'Assign Supervisor field is required'
+        })
+    }
+    next();
 }
-
 
 }

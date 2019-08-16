@@ -17,6 +17,7 @@ router.get('/pms_api',(req, res) =>{
 )
 .post(
     '/meeting/createMeeting',
+    validateInput.createMeeting,
     MeetingController.createMeeting
 )
 module.exports = router;

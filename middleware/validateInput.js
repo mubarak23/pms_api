@@ -1,12 +1,13 @@
-import bcrypt from 'bcrypt';
-
-signup((req, res, next) =>{
+//import bcrypt from 'bcrypt';
+module.exports =  {
+ signup (req, res, next) {
     req.body.username = req.body.username && req.body.username.toLowerCase();
     req.body.reg_no = req.body.username && req.body.reg_no.toUpperCase();
+   //console.log(req.body);
     const { username, email, password, reg_no, assign_to, confirmPasword } = req.body;
-    if(!username || typeof username !== 'string'){
+    if( username === undefined || typeof username !== 'string'){
         return res.status(400).send({
-            message: 'Username is required'
+            message: 'Username is required Why'
         })
     }else if(!email){
         return res.status(400).send({
@@ -30,9 +31,9 @@ signup((req, res, next) =>{
         })
     }
  next();
-})
+},
 
-signin((req, res, next) =>{
+ signin (req, res, next) {
     req.body.username = req.body.username && req.body.username.toLowerCase();
     const { username, passsword} = req.body;
     if(!username || typeof username !== 'string'){
@@ -45,4 +46,36 @@ signin((req, res, next) =>{
         });
     }
     next();
-})
+},
+createMeeting(req, next, res){
+    const { date, time, location, create_by, with_student_by, create_at} = req.body;
+    if(!date){
+        return res.status(401).send({
+            message: 'Meeting Date is required'
+        })
+    } else if(!time){
+        return req.json(401).send({
+            message: 'Meeting Time is required'
+        })
+    } else if(!location){
+        return res.status(401).send({
+            message: 'Meeting Location is required'
+        })
+    } else if(!create_by){
+        return res.status(401).send({
+            message: 'Created by field is required'
+        })
+    }else if(!with_student_by){
+        return res.status(401).send({
+            message: 'With Student Field is required'
+        })
+    }else if(!create_at){
+        return res.status(401).send({
+            message: 'Created at Field is required'
+        })
+    }
+    next();
+}
+
+
+}

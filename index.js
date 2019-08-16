@@ -51,6 +51,11 @@ app.use('/api', userRouter);
  
  app.use('/api/v1', routes);
 
+ app.post('/test/signup/', (req, res) =>{
+    return res.status({
+        message: req.body.username
+    });
+ });
 
  app.listen(port, () =>{
      console.log('Running on port ' + port);

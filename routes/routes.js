@@ -1,6 +1,7 @@
-import express from 'express';
-import validateInput from '../middleware/validateInput';
-import UserController from '../controllers/UserController';
+const express = require('express');
+const  validateInput = require('../middleware/validateInput');
+const UserController = require( '../controllers/UserController');
+const MeetingController = require('../controllers/MeetingController');
 
 const router = express.Router();
 
@@ -14,5 +15,8 @@ router.get('/pms_api',(req, res) =>{
     validateInput.signup,
     UserController.createUser
 )
-
-export default router;
+.post(
+    '/meeting/createMeeting',
+    MeetingController.createMeeting
+)
+module.exports = router;
